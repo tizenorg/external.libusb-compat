@@ -58,6 +58,10 @@ make %{?jobs:-j%jobs}
 %makeinstall
 rm %{buildroot}%{_libdir}/*.la
 
+mkdir -p %{buildroot}/usr/share/license
+cp COPYING %{buildroot}/usr/share/license/%{name}
+cat LICENSE >> %{buildroot}/usr/share/license/%{name}
+
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
@@ -66,6 +70,7 @@ rm %{buildroot}%{_libdir}/*.la
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog LICENSE NEWS README
 %{_libdir}/*.so.*
+/usr/share/license/%{name}
 
 %files devel
 %defattr(-,root,root)
