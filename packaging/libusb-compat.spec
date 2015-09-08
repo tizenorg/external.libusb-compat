@@ -19,11 +19,12 @@
 Name:           libusb-compat
 Url:            http://libusb.wiki.sourceforge.net/LibusbCompat0.1
 Summary:        libusb-1.0 Compatibility Layer for libusb-0.1
-License:        BSD-3-Clause ; LGPL-2.1+
+License:        LGPL-2.1+ and BSD-2.0
 Group:          System/Libraries
 Version:        0.1.4
-Release:        2
+Release:        3
 Source:         %{name}-%{version}.tar.gz
+source1:		libusb-compat.manifest
 BuildRequires:  libtool
 BuildRequires:  pkgconfig(libusb-1.0)
 
@@ -46,6 +47,7 @@ and walk like libusb-0.1.
 %setup -q
 
 %build
+cp %{SOURCE1} .
 %configure\
 	--disable-static\
 	--disable-build-docs
@@ -55,6 +57,10 @@ make %{?jobs:-j%jobs}
 %makeinstall
 rm %{buildroot}%{_libdir}/*.la
 
+install -D -m 0644 COPYING %{buildroot}/usr/share/license/libusb-compat
+cat LICENSE >> %{buildroot}/usr/share/license/libusb-compat
+
+
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
@@ -63,6 +69,7 @@ rm %{buildroot}%{_libdir}/*.la
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog LICENSE NEWS README
 %{_libdir}/*.so.*
+%{_datadir}/license/libusb-compat
 
 %files devel
 %defattr(-,root,root)
