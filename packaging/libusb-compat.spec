@@ -19,7 +19,7 @@
 Name:           libusb-compat
 Url:            http://libusb.wiki.sourceforge.net/LibusbCompat0.1
 Summary:        libusb-1.0 Compatibility Layer for libusb-0.1
-License:        LGPL-2.1+ and BSD-2.0
+License:        BSD-3-Clause ; LGPL-2.1+
 Group:          System/Libraries
 Version:        0.1.4
 Release:        3
